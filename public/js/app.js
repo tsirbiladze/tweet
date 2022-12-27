@@ -5302,6 +5302,40 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostTweet.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostTweet.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "PostTweet",
+  data: function data() {
+    return {
+      body: ''
+    };
+  },
+  props: ['tweets'],
+  methods: {
+    post: function post() {
+      var _this = this;
+      axios.post('/tweets', {
+        body: this.body
+      }).then(function (response) {
+        _this.tweets.unshift(response.body);
+        _this.body = '';
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Timeline.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Timeline.vue?vue&type=script&lang=js& ***!
@@ -5313,11 +5347,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _PostTweet__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PostTweet */ "./resources/js/components/PostTweet.vue");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       tweets: []
     };
+  },
+  components: {
+    PostTweet: _PostTweet__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   mounted: function mounted() {
     var _this = this;
@@ -5326,6 +5365,67 @@ __webpack_require__.r(__webpack_exports__);
     });
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostTweet.vue?vue&type=template&id=1a1ce954&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostTweet.vue?vue&type=template&id=1a1ce954&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("form", {
+    attrs: {
+      action: "#"
+    },
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.post.apply(null, arguments);
+      }
+    }
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.body,
+      expression: "body"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      cols: "30",
+      rows: "5"
+    },
+    domProps: {
+      value: _vm.body
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.body = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-default",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("Post")])])]);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
 
 /***/ }),
 
@@ -5356,7 +5456,11 @@ var render = function render() {
     staticClass: "card-header"
   }, [_vm._v("Timeline")]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
-  }, _vm._l(_vm.tweets, function (tweet) {
+  }, [_c("post-tweet", {
+    attrs: {
+      tweets: _vm.tweets
+    }
+  }), _vm._v(" "), _vm._l(_vm.tweets, function (tweet) {
     return _c("div", {
       staticClass: "media"
     }, [_c("div", {
@@ -5364,7 +5468,7 @@ var render = function render() {
     }), _vm._v(" "), _c("div", {
       staticClass: "media-body"
     }, [_c("strong", [_vm._v(_vm._s(tweet.user.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(tweet.body))])])]);
-  }), 0)])])])]);
+  })], 2)])])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -5399,6 +5503,7 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('timeline', (__webpack_require__(/*! ./components/Timeline.vue */ "./resources/js/components/Timeline.vue")["default"]));
+Vue.component('post-tweet', (__webpack_require__(/*! ./components/PostTweet.vue */ "./resources/js/components/PostTweet.vue")["default"]));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28100,6 +28205,45 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./resources/js/components/PostTweet.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/PostTweet.vue ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _PostTweet_vue_vue_type_template_id_1a1ce954_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PostTweet.vue?vue&type=template&id=1a1ce954&scoped=true& */ "./resources/js/components/PostTweet.vue?vue&type=template&id=1a1ce954&scoped=true&");
+/* harmony import */ var _PostTweet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PostTweet.vue?vue&type=script&lang=js& */ "./resources/js/components/PostTweet.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PostTweet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PostTweet_vue_vue_type_template_id_1a1ce954_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _PostTweet_vue_vue_type_template_id_1a1ce954_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "1a1ce954",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/PostTweet.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Timeline.vue":
 /*!**********************************************!*\
   !*** ./resources/js/components/Timeline.vue ***!
@@ -28139,6 +28283,22 @@ component.options.__file = "resources/js/components/Timeline.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/PostTweet.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/PostTweet.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PostTweet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PostTweet.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostTweet.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PostTweet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Timeline.vue?vue&type=script&lang=js&":
 /*!***********************************************************************!*\
   !*** ./resources/js/components/Timeline.vue?vue&type=script&lang=js& ***!
@@ -28152,6 +28312,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timeline_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Timeline.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Timeline.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timeline_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/PostTweet.vue?vue&type=template&id=1a1ce954&scoped=true&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/PostTweet.vue?vue&type=template&id=1a1ce954&scoped=true& ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PostTweet_vue_vue_type_template_id_1a1ce954_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PostTweet_vue_vue_type_template_id_1a1ce954_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PostTweet_vue_vue_type_template_id_1a1ce954_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PostTweet.vue?vue&type=template&id=1a1ce954&scoped=true& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/PostTweet.vue?vue&type=template&id=1a1ce954&scoped=true&");
+
 
 /***/ }),
 
